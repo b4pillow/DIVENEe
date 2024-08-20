@@ -55,6 +55,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Vector2 SideAttackArea;
     [SerializeField] private LayerMask attackableLayer;
     [SerializeField] private float damage;
+    [SerializeField] float attackingTime = 0.4f;
     
     void Start()
     {
@@ -73,7 +74,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
      void Update()
     {
-        if (pState.attacking) return; // Não fazer nada se o jogador estiver atacando
+        if (pState.attacking)
+        {
+            rb.velocity = Vector2.zero;
+            return;
+        }
 
         GetInputs();
         UpdateJumpVariables();
@@ -82,7 +87,10 @@ public class PlayerController : MonoBehaviour
         Move();
         Jump();
         StartDash();
-        Attack();
+        if (attack)
+        {
+            StartCoroutine(Attack());
+        }
     }
 
     void GetInputs()
@@ -110,8 +118,11 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        rb.velocity = new Vector2(walkSpeed * directionX, rb.velocity.y);
-        anim.SetBool("Walking", rb.velocity.x != 0 && Grounded());
+        if(pState.attacking == false)
+        {
+            rb.velocity = new Vector2(walkSpeed * directionX, rb.velocity.y);
+            anim.SetBool("Walking", rb.velocity.x != 0 && Grounded());
+        }
     }
 
     void StartDash()
@@ -142,20 +153,27 @@ public class PlayerController : MonoBehaviour
         canDash = true;
     }
 
-    void Attack()
+    IEnumerator Attack()
     {
+        if (pState.attacking) yield break;
+        pState.attacking = true;
+    
         timeSinceAttack += Time.deltaTime;
         if (attack && timeSinceAttack >= timeBetweenAttack)
         {
-            timeSinceAttack = 0;
-            anim.SetTrigger("Attacking");
-
             if (directionY == 0 || (directionY < 0 && Grounded()))
             {
-                // Lógica de ataque
                 Hit(sideAttackTransform, SideAttackArea);
             }
+            
+            timeSinceAttack = 0;
+            pState.attacking = true;
+            anim.SetTrigger("Attacking");
+            yield return new WaitForSeconds(attackingTime);
+            pState.dashing = false;
         }
+
+        pState.attacking = false;
     }
 
 
