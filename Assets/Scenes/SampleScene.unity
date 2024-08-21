@@ -373,6 +373,7 @@ GameObject:
   - component: {fileID: 1817064790}
   - component: {fileID: 1817064789}
   - component: {fileID: 1817064793}
+  - component: {fileID: 1817064794}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
@@ -513,7 +514,7 @@ Transform:
   m_GameObject: {fileID: 1817064788}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.75, y: -2.76, z: 0}
+  m_LocalPosition: {x: 8.71, y: -1.91, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -534,6 +535,20 @@ MonoBehaviour:
   health: 10
   recoilLength: 1
   recoilFactor: 50
+--- !u!114 &1817064794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817064788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08450fdce53efaa4dbcf6684d9df3f8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 3
+  MoveDistance: 5
 --- !u!1001 &183404369043029192
 PrefabInstance:
   m_ObjectHideFlags: 0
