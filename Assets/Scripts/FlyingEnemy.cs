@@ -13,12 +13,12 @@ public class FlyingEnemy : MonoBehaviour
     private Vector2 initialPosition;//linha em observação
     private int PatrolDirection = 1;
     private bool isChasing = false;
-    private Transform Player; //linha em observação
+    private Transform player; //linha em observação
 
     void Start()
     {
         initialPosition = transform.position;
-        //Player = gameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     // Update is called once per frame
@@ -26,13 +26,13 @@ public class FlyingEnemy : MonoBehaviour
     {
         if(isChasing)
         {
-           //chase.Player();
+           chasePlayer();
         }
         else
         {
-            //Patrol();
+            Patrol();
         }
-        //detectPlayer();
+        detectPlayer();
     }
 
     void Patrol()
@@ -47,11 +47,32 @@ public class FlyingEnemy : MonoBehaviour
 
     void detectPlayer()
     {
+        float DistancetoPlayer = Vector2.Distance(transform.position,player.position);
+
+        if(DistancetoPlayer  <= attackRange)
+        {
+            isChasing = true;
+        }
+        else
+        {
+            isChasing = false;
+        }
 
     }
 
-    void ChasePlayer()
+    void chasePlayer()
     {
+        Vector2 DirectiontoPlayer = (player.position - transform.position).normalized;
+        float DistancetoPlayer = Vector2.Distance(transform.position,player.position);
 
+        if(DistancetoPlayer < diveAttackdHeight)
+        {
+           transform.position = Vector2.MoveTowards(transform.position, player.position, ChaseSpeed * Time.deltaTime);
+        }
+        else
+        {
+           Vector2 GroundAttackPosition = new Vector2(player.position.x,transform.position.y);
+           transform.position = Vector2.MoveTowards(transform.position,GroundAttackPosition, ChaseSpeed * Time.deltaTime);
+        }
     }
 }
