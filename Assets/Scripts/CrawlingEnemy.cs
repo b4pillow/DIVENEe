@@ -14,7 +14,7 @@ public class CrawlingEnemy : MonoBehaviour
 
     private Vector3 initialPosition;        
     private int patrolDirection = 1;       
-    private bool isChasing = false;         
+    public bool isChasing = false;         
     private Rigidbody2D rb;                
     private Transform player;              
 
@@ -27,7 +27,7 @@ public class CrawlingEnemy : MonoBehaviour
 
     void Update()
     {
-        if (isChasing == false)
+        if (isChasing == false) //Obs.
         {
             Patrol();
         }
@@ -44,7 +44,7 @@ public class CrawlingEnemy : MonoBehaviour
         if (distanceFromStart >= patrolDistance)
         {
             patrolDirection *= -1;
-            transform.localScale = new Vector3(patrolDirection, 1, 1); // Inverte o sprite do inimigo
+            transform.localScale = new Vector3( -1 * transform.localScale.x, transform.localScale.y, transform.localScale.z); // Inverte o sprite do inimigo
         }
     }
 
@@ -54,19 +54,36 @@ public class CrawlingEnemy : MonoBehaviour
 
         if (distanceToPlayer <= detectionRange && !isChasing)
         {
-            isChasing = true;
-            JumpAttack();
+            isChasing = true; //Obs.
+            StartCoroutine(JumpAttack());
         }
     }
 
-    void JumpAttack()
+    IEnumerator JumpAttack()
     {
-        Vector2 directionToPlayer = (player.position - transform.position).normalized;
+       // Vector2 directionToPlayer = (player.position - transform.position).normalized;
 
-        Vector2 jumpDirection = new Vector2(directionToPlayer.x * attackDirection.x, attackDirection.y).normalized;
+        //Vector2 jumpDirection = new Vector2(directionToPlayer.x * attackDirection.x, attackDirection.y).normalized;
 
-        rb.velocity = new Vector2(0, 0);
-        rb.AddForce(new Vector2(jumpDirection.x * chaseSpeed, jumpDirection.y * jumpForce), ForceMode2D.Impulse);
+        //rb.velocity = new Vector2(0, rb.velocity.y);
+        yield return new WaitForSeconds(2);
+       // rb.AddForce(new Vector2(jumpDirection.x * chaseSpeed, jumpDirection.y * jumpForce), ForceMode2D.Impulse);
+
+        if(player.position.x < transform.position.x)
+        {
+            //pulo pra esquerda
+            rb.AddForce(new Vector2(-1,1) * jumpForce,ForceMode2D.Impulse); 
+        }
+        else
+        {
+            //pulo pra direita
+             rb.AddForce(new Vector2(1,1) * jumpForce,ForceMode2D.Impulse);
+
+        }
+
+        yield return new WaitForSeconds(2);
+        isChasing = false;
+        StopCoroutine(JumpAttack()); 
     }
 
     void OnCollisionEnter2D(Collision2D collision)
