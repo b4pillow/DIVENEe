@@ -391,7 +391,7 @@ TextureImporter:
         width: 33
         height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -412,7 +412,7 @@ TextureImporter:
         width: 61
         height: 57
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -433,7 +433,7 @@ TextureImporter:
         width: 57
         height: 44
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -454,7 +454,7 @@ TextureImporter:
         width: 33
         height: 37
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -462,6 +462,48 @@ TextureImporter:
       bones: []
       spriteID: d6c5efb43fb4e9348ab7e86c755d4072
       internalID: -1811339515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Anima\xE7\xF5es_8"
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 1062
+        width: 34
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e348c3518587ebe4999b531511042df8
+      internalID: -318957214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Anima\xE7\xF5es_9"
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 1063
+        width: 34
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c96dd8de92cac9844827e5a072ca7cb7
+      internalID: -437131802
       vertices: []
       indices: 
       edges: []
@@ -485,6 +527,8 @@ TextureImporter:
       "Anima\xE7\xF5es_5": 943516303
       "Anima\xE7\xF5es_6": 830285092
       "Anima\xE7\xF5es_7": -1811339515
+      "Anima\xE7\xF5es_8": -318957214
+      "Anima\xE7\xF5es_9": -437131802
       Ataque 3: -148525178
       Ataque 3.2: 1643533949
       Ataque 3.3: 234558327
