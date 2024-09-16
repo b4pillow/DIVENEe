@@ -12,9 +12,9 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Cura.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Enemy.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Enemy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FallingPlatform.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/LifeSystemPlayer.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LifeSystemPlayer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LifeUI.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlayerController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlayerStateList.cs" root0="FORCE_HIGHLIGHTING" />
@@ -68,6 +68,10 @@
       <workItem from="1720885842851" duration="4699000" />
       <workItem from="1726429260809" duration="9671000" />
       <workItem from="1726440880231" duration="56000" />
+      <workItem from="1726441991907" duration="12000" />
+      <workItem from="1726442018886" duration="628000" />
+      <workItem from="1726443436265" duration="1211000" />
+      <workItem from="1726445826194" duration="6000" />
     </task>
     <servers />
   </component>
