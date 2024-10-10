@@ -102,40 +102,49 @@ public class PlayerController : MonoBehaviour
 
     void Flip()
     {
-        Vector3 localScale = transform.localScale;
-
-        if (directionX < 0)
+        if (DialogueControl.Instance.isTyping == false)
         {
-            localScale.x = -Mathf.Abs(localScale.x);
-        }
-        else if (directionX > 0)
-        {
-            localScale.x = Mathf.Abs(localScale.x);
-        }
+            Vector3 localScale = transform.localScale;
 
-        transform.localScale = localScale;
+            if (directionX < 0)
+            {
+                localScale.x = -Mathf.Abs(localScale.x);
+            }
+            else if (directionX > 0)
+            {
+                localScale.x = Mathf.Abs(localScale.x);
+            }
+
+            transform.localScale = localScale;   
+        }
     }
 
     private void Move()
     {
-        if(pState.attacking == false)
+        if (DialogueControl.Instance.isTyping == false)
         {
-            rb.velocity = new Vector2(walkSpeed * directionX, rb.velocity.y);
-            anim.SetBool("Walking", rb.velocity.x != 0 && Grounded());
+            if(pState.attacking == false)
+            {
+                rb.velocity = new Vector2(walkSpeed * directionX, rb.velocity.y);
+                anim.SetBool("Walking", rb.velocity.x != 0 && Grounded());
+            }
         }
     }
 
     void StartDash()
     {
-        if (Input.GetButtonDown("Dash") && canDash && !dashed)
+        if (DialogueControl.Instance.isTyping == false)
         {
-            StartCoroutine(Dash());
-            dashed = true;
-        }
+            if (Input.GetButtonDown("Dash") && canDash && !dashed)
+            {
+                StartCoroutine(Dash());
+                dashed = true;
+            }
 
-        if (Grounded())
-        {
-            dashed = false;
+            if (Grounded())
+            {
+                dashed = false;
+            }
         }
     }
 
@@ -155,25 +164,28 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Attack()
     {
-        if (pState.attacking) yield break;
-        pState.attacking = true;
-    
-        timeSinceAttack += Time.deltaTime;
-        if (attack && timeSinceAttack >= timeBetweenAttack)
+        if (DialogueControl.Instance.isTyping == false)
         {
-            if (directionY == 0 || (directionY < 0 && Grounded()))
-            {
-                Hit(sideAttackTransform, SideAttackArea);
-            }
-            
-            timeSinceAttack = 0;
+            if (pState.attacking) yield break;
             pState.attacking = true;
-            anim.SetTrigger("Attacking");
-            yield return new WaitForSeconds(attackingTime);
-            pState.dashing = false;
-        }
+    
+            timeSinceAttack += Time.deltaTime;
+            if (attack && timeSinceAttack >= timeBetweenAttack)
+            {
+                if (directionY == 0 || (directionY < 0 && Grounded()))
+                {
+                    Hit(sideAttackTransform, SideAttackArea);
+                }
+            
+                timeSinceAttack = 0;
+                pState.attacking = true;
+                anim.SetTrigger("Attacking");
+                yield return new WaitForSeconds(attackingTime);
+                pState.dashing = false;
+            }
 
-        pState.attacking = false;
+            pState.attacking = false;
+        }
     }
 
 
@@ -205,23 +217,26 @@ public class PlayerController : MonoBehaviour
     }
     void Jump()
     {
-        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0)
+        if (DialogueControl.Instance.isTyping == false)
         {
-            rb.velocity = new Vector2(rb.velocity.x, 0);
-            pState.jumping = false;
-        }
-
-        if (!pState.jumping && Grounded())
-        {
-            if (jumpBufferCounter > 0 && coyoteTimeCounter > 0)
+            if (Input.GetButtonUp("Jump") && rb.velocity.y > 0)
             {
-                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-                pState.jumping = true;
-                jumpBufferCounter = 0;
+                rb.velocity = new Vector2(rb.velocity.x, 0);
+                pState.jumping = false;
             }
-        }
 
-        anim.SetBool("Jumping", !Grounded());
+            if (!pState.jumping && Grounded())
+            {
+                if (jumpBufferCounter > 0 && coyoteTimeCounter > 0)
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                    pState.jumping = true;
+                    jumpBufferCounter = 0;
+                }
+            }
+
+            anim.SetBool("Jumping", !Grounded());
+        }
     }
 
 

@@ -10,20 +10,14 @@ public class Dialogue : MonoBehaviour
 
 	public LayerMask playerLayer;
 	public float radious;
-
-	private DialogueControl dc;
-	bool onRadious;
 	
-	private void Start()
-	{
-		dc = FindObjectOfType<DialogueControl>();
-	}
+	bool onRadious;
 
 	private void Update()
 	{
 		if(Input.GetKeyDown(KeyCode.F) && onRadious)
 			{
-				dc.Speech(profile, speechTxt, actorName);
+				DialogueControl.Instance.Speech(profile, speechTxt, actorName);
 			}
 	}
 

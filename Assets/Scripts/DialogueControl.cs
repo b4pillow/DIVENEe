@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,8 +16,27 @@ public class DialogueControl : MonoBehaviour
     public float typingSpeed;
     private string[] sentences;
     private int index;
+    public static DialogueControl Instance;
+    public bool isTyping;
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+
+
     public void Speech(Sprite p, string[] txt, string actorName)
     {
+        isTyping = true;
+        index = 0;
+        speechText.text = "";
         dialogueObj.SetActive(true);
         profile.sprite = p;
         sentences = txt;
@@ -48,6 +68,7 @@ public class DialogueControl : MonoBehaviour
                 speechText.text = "";
                 index = 0;
                 dialogueObj.SetActive(false);
+                isTyping = false;
             }
         }
     }
