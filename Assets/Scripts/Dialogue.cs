@@ -10,6 +10,8 @@ public class Dialogue : MonoBehaviour
 
 	public LayerMask playerLayer;
 	public float radious;
+
+	public GameObject interact;
 	
 	bool onRadious;
 
@@ -31,10 +33,12 @@ public class Dialogue : MonoBehaviour
 		Collider2D hit = Physics2D.OverlapCircle(transform.position, radious, playerLayer);
 			if(hit != null)
 			{
+				interact.SetActive(true);
 				onRadious = true;
 			}
 			else
 			{
+				interact.SetActive(false);
 				onRadious = false;
 			}
 	}
@@ -43,4 +47,6 @@ public class Dialogue : MonoBehaviour
 	{
 		Gizmos.DrawWireSphere(transform.position, radious);
 	}
+	
+	
 }
