@@ -30,8 +30,9 @@ public class LifeSystemPlayer : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject, 0);
+            //GameController.Instantiate.GameOver;
         }
-
+        
         anim.SetTrigger("TakeDamage"); // Usa o Animator diretamente
     }
 
