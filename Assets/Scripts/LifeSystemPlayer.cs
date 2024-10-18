@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,13 +9,14 @@ public class LifeSystemPlayer : MonoBehaviour
     public int maxHealth = 20;
     [SerializeField] private LifeUI barraDeVida;
     private Animator anim;
-
+    GameController GC = new GameController();
     // Start is called before the first frame update
     void Start()
     {
         health = maxHealth;
         barraDeVida.ChangeBar(health, maxHealth);
         anim = GetComponent<Animator>(); // Inicializa o Animator
+       
     }
 
     // Update is called once per frame
@@ -30,7 +32,7 @@ public class LifeSystemPlayer : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject, 0);
-            //GameController.Instantiate.GameOver;
+            GC.GameOver();
         }
         
         anim.SetTrigger("TakeDamage"); // Usa o Animator diretamente

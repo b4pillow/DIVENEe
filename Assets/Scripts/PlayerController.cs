@@ -102,7 +102,7 @@ public class PlayerController : MonoBehaviour
 
     void Flip()
     {
-        if (DialogueControl.Instance.isTyping == false)
+        if (DialogueControl.Instance.isTyping == false && Time.timeScale != 0f)
         {
             Vector3 localScale = transform.localScale;
 
@@ -121,7 +121,7 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        if (DialogueControl.Instance.isTyping == false)
+        if (DialogueControl.Instance.isTyping == false && Time.timeScale != 0f)
         {
             if(pState.attacking == false)
             {
