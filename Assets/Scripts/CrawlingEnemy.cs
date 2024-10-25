@@ -50,6 +50,10 @@ public class CrawlingEnemy : MonoBehaviour
 
     void DetectPlayer()
     {
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player").transform; 
+        }
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
         if (distanceToPlayer <= detectionRange && !isChasing)

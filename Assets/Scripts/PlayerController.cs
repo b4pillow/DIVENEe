@@ -28,6 +28,10 @@ public class PlayerController : MonoBehaviour
     private bool canDash = true;
     private bool dashed = false;
 
+    private Vector3 lastCheckpointPosition;
+    private bool checkpointSaved = false;
+
+
 
     [Header("Singleton")]
     public static PlayerController Instance;
@@ -260,6 +264,20 @@ public class PlayerController : MonoBehaviour
         else
         {
             jumpBufferCounter = jumpBufferCounter - Time.deltaTime * 10;
+        }
+    }
+
+      public void SaveCheckpoint(Vector3 checkpointPosition)
+    {
+        lastCheckpointPosition = checkpointPosition;
+        checkpointSaved = true;
+    }
+
+    public void Respawn()
+    {
+        if (checkpointSaved)
+        {
+            transform.position = lastCheckpointPosition;
         }
     }
 }

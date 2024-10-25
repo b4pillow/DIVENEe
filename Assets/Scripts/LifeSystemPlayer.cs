@@ -9,7 +9,7 @@ public class LifeSystemPlayer : MonoBehaviour
     public int maxHealth = 20;
     [SerializeField] private LifeUI barraDeVida;
     private Animator anim;
-    GameController GC = new GameController();
+    public GameController GC;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,8 +31,8 @@ public class LifeSystemPlayer : MonoBehaviour
         barraDeVida.ChangeBar(health, maxHealth);
         if (health <= 0)
         {
-            Destroy(gameObject, 0);
             GC.GameOver();
+            Destroy(gameObject, 0);
         }
         
         anim.SetTrigger("TakeDamage"); // Usa o Animator diretamente
