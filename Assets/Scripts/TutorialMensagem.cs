@@ -7,9 +7,15 @@ public class TutorialMensagem : MonoBehaviour
     public float radious; // Raio da área de interação
     public GameObject interact; // Objeto de interface que será ativado
     public LayerMask playerLayer; // Camada do jogador para detectar colisão
+    private Animator anim;
 
     bool onRadious;
     bool interactActivated; // Variável para verificar se o objeto já foi ativado
+
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
 
     private void FixedUpdate()
     {
@@ -22,9 +28,10 @@ public class TutorialMensagem : MonoBehaviour
         Collider2D hit = Physics2D.OverlapCircle(transform.position, radious, playerLayer);
         if(hit != null && !interactActivated)
         {
-            interact.SetActive(true); // Ativa o GameObject de interação
+            interact.SetActive(true);// Ativa o GameObject de interação
             onRadious = true;
             interactActivated = true; // Marca como ativado
+            anim.SetTrigger("FadeIn");
         }
         else if(hit == null)
         {
