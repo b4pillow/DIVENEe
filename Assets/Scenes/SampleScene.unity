@@ -5567,11 +5567,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 232357822166686374, guid: 2f579d9b03583c44b809508b5f1484c4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -86.1
+      value: -66.92
       objectReference: {fileID: 0}
     - target: {fileID: 232357822166686374, guid: 2f579d9b03583c44b809508b5f1484c4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.4
+      value: -2.73
       objectReference: {fileID: 0}
     - target: {fileID: 232357822166686374, guid: 2f579d9b03583c44b809508b5f1484c4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6511,7 +6511,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -86.17758, y: 0.12022996, z: -10}
+  m_LocalPosition: {x: -67.011375, y: 0.25081992, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6949,6 +6949,7 @@ GameObject:
   - component: {fileID: 597166985}
   - component: {fileID: 597166984}
   - component: {fileID: 597166983}
+  - component: {fileID: 597166986}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -7019,7 +7020,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 597166984}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 597166986}
+        m_TargetAssemblyTypeName: RestarButton, Assembly-CSharp
+        m_MethodName: RestartScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &597166984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7058,6 +7071,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 597166981}
   m_CullTransparentMesh: 1
+--- !u!114 &597166986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597166981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc6a43bb3d296694ea1d65bc835e66e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &600211134
 GameObject:
   m_ObjectHideFlags: 0
@@ -19172,7 +19197,7 @@ Transform:
   m_GameObject: {fileID: 1439735735}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 352.13647, y: 2.0894585, z: -9.728456}
+  m_LocalPosition: {x: 371.31647, y: 1.7594585, z: -9.728456}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -25685,7 +25710,7 @@ Transform:
   m_GameObject: {fileID: 1817064788}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 43.58, y: -2.19, z: 0.020026729}
+  m_LocalPosition: {x: -6.68, y: -2.19, z: 0.020026729}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

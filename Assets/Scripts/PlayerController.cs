@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask whatIsGround;
 
     PlayerStateList pState;
+
     private Rigidbody2D rb;
     private float directionX, directionY;
     private float gravity;
@@ -30,6 +31,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 lastCheckpointPosition;
     private bool checkpointSaved = false;
+
 
 
 
@@ -129,6 +131,7 @@ public class PlayerController : MonoBehaviour
         {
             if(pState.attacking == false)
             {
+                //rb.AddForce(new Vector2(walkSpeed * directionX, rb.velocity.y), ForceMode2D.Force);
                 rb.velocity = new Vector2(walkSpeed * directionX, rb.velocity.y);
                 anim.SetBool("Walking", rb.velocity.x != 0 && Grounded());
             }
