@@ -12,7 +12,7 @@ public class CheckPoint : MonoBehaviour
         if (col.CompareTag("Player"))
         {
     
-            col.GetComponent<PlayerController>().SaveCheckpoint(transform.position);
+            col.gameObject.GetComponent<PlayerController>().SaveCheckpoint(transform.position);
             gameObject.SetActive(false);
             //Destroy(gameObject, 1f);
         }

@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour
     private bool canDash = true;
     private bool dashed = false;
 
+    public Vector3 Position;
+
     private Vector3 lastCheckpointPosition;
     private bool checkpointSaved = false;
 
@@ -69,6 +71,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         gravity = rb.gravityScale;
+        Position = transform.position;
     }
 
     private void OnDrawGizmos()
