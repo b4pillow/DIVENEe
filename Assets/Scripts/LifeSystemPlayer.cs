@@ -25,8 +25,6 @@ public class LifeSystemPlayer : MonoBehaviour
         barraDeVida.ChangeBar(health, maxHealth);
         anim = GetComponent<Animator>(); // Inicializa o Animator
         spriteRenderer.GetComponent<SpriteRenderer>(); //Obs.
-
-       
     }
 
     // Update is called once per frame
