@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     private float coyoteTimeCounter = 0;
     [SerializeField] private float coyoteTime;
 
+    bool knockbacking;
+
     [Header("Ground Check")]
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundCheckY = 0.2f;
@@ -72,6 +74,7 @@ public class PlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
         gravity = rb.gravityScale;
         Position = transform.position;
+        knockbacking = false;
     }
 
     private void OnDrawGizmos()
@@ -83,7 +86,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
      void Update()
     {
-        if (pState.attacking)
+        if (pState.attacking && !knockbacking)
         {
             rb.velocity = Vector2.zero;
             return;
@@ -130,7 +133,7 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        if (DialogueControl.Instance.isTyping == false && Time.timeScale != 0f)
+        if (DialogueControl.Instance.isTyping == false && Time.timeScale != 0f && !knockbacking)
         {
             if(pState.attacking == false)
             {
@@ -143,7 +146,7 @@ public class PlayerController : MonoBehaviour
 
     void StartDash()
     {
-        if (DialogueControl.Instance.isTyping == false)
+        if (DialogueControl.Instance.isTyping == false && !knockbacking)
         {
             if (Input.GetButtonDown("Dash") && canDash && !dashed)
             {
@@ -174,7 +177,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Attack()
     {
-        if (DialogueControl.Instance.isTyping == false)
+        if (DialogueControl.Instance.isTyping == false && !knockbacking)
         {
             if (pState.attacking) yield break;
             pState.attacking = true;
@@ -210,6 +213,16 @@ public class PlayerController : MonoBehaviour
                 objectsToHit[i].GetComponent<Enemy>().EnemyHit(damage, (transform.position - objectsToHit[i].transform.position).normalized, 100);
             }
         }
+    }
+
+
+    public IEnumerator KnockbackEffect(Vector2 direction)
+    {
+        rb.velocity = direction * 10;
+        knockbacking = true;
+        yield return new WaitForSeconds(1);
+        knockbacking = false;
+        rb.velocity = Vector2.zero;
     }
 
     public bool Grounded()

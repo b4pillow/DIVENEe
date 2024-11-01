@@ -17,6 +17,11 @@ public class CheckPoint : MonoBehaviour
             //Destroy(gameObject, 1f);
         }
     }
+
+    public void BandeiraSalva()
+    {
+        //logica
+    }
 }
 
 

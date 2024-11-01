@@ -16,6 +16,7 @@ public class LifeSystemPlayer : MonoBehaviour
     public GameController GC;
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
+    public PlayerController player;
 
     // Start is called before the first frame update
     void Start()
@@ -54,18 +55,13 @@ public class LifeSystemPlayer : MonoBehaviour
         {
                 
             Vector2 knockbackDirection = (transform.position - other.transform.position).normalized;
-            ApplyKnockback(knockbackDirection);
+            StartCoroutine(player.KnockbackEffect(knockbackDirection));
             StartCoroutine(StartInvulnerability());
 
             Damage(2);
         }
     }
 
-    private void ApplyKnockback(Vector2 direction)
-    {
-        rb.velocity = Vector2.zero; 
-        rb.AddForce(direction * KnockbackForce, ForceMode2D.Impulse);
-    }
 
     private System.Collections.IEnumerator StartInvulnerability()
     {
