@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
@@ -13,8 +14,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpBufferFrames;
     private float coyoteTimeCounter = 0;
     [SerializeField] private float coyoteTime;
-
-    bool knockbacking;
 
     [Header("Ground Check")]
     [SerializeField] private Transform groundCheck;
@@ -66,6 +65,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask attackableLayer;
     [SerializeField] private float damage;
     [SerializeField] float attackingTime = 0.4f;
+    private int specialContagem;
+    public Transform firePoint;
+    public GameObject Special;
+    public TMPro.TextMeshProUGUI texto;
     
     void Start()
     {
@@ -74,7 +77,7 @@ public class PlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
         gravity = rb.gravityScale;
         Position = transform.position;
-        knockbacking = false;
+        specialContagem = 0;
     }
 
     private void OnDrawGizmos()
@@ -86,7 +89,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
      void Update()
     {
-        if (pState.attacking && !knockbacking)
+        if (pState.attacking)
         {
             rb.velocity = Vector2.zero;
             return;
@@ -133,7 +136,7 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        if (DialogueControl.Instance.isTyping == false && Time.timeScale != 0f && !knockbacking)
+        if (DialogueControl.Instance.isTyping == false && Time.timeScale != 0f)
         {
             if(pState.attacking == false)
             {
@@ -146,7 +149,7 @@ public class PlayerController : MonoBehaviour
 
     void StartDash()
     {
-        if (DialogueControl.Instance.isTyping == false && !knockbacking)
+        if (DialogueControl.Instance.isTyping == false)
         {
             if (Input.GetButtonDown("Dash") && canDash && !dashed)
             {
@@ -177,7 +180,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Attack()
     {
-        if (DialogueControl.Instance.isTyping == false && !knockbacking)
+        if (DialogueControl.Instance.isTyping == false)
         {
             if (pState.attacking) yield break;
             pState.attacking = true;
@@ -211,18 +214,46 @@ public class PlayerController : MonoBehaviour
             if (objectsToHit[i].GetComponent<Enemy>() != null)
             {
                 objectsToHit[i].GetComponent<Enemy>().EnemyHit(damage, (transform.position - objectsToHit[i].transform.position).normalized, 100);
+                SpecialCount();
             }
         }
     }
 
-
-    public IEnumerator KnockbackEffect(Vector2 direction)
+    private void SpecialCount()
     {
-        rb.velocity = direction * 10;
-        knockbacking = true;
-        yield return new WaitForSeconds(1);
-        knockbacking = false;
-        rb.velocity = Vector2.zero;
+        specialContagem++;
+        if (specialContagem >= 5)
+        {
+            ExecutarSpecial();
+            specialContagem = 0;
+        }
+
+        UpdateNumber();
+    }
+
+    void UpdateNumber()
+    {
+        if (specialContagem == 0)
+        {
+            StartCoroutine(CountingEffect());
+        }
+        else
+        {
+            texto.text = $"{specialContagem}";
+        }
+
+    }
+
+    IEnumerator CountingEffect()
+    {
+        texto.text = "Soltando Poder";
+        yield return new WaitForSeconds(0.5f);
+        texto.text = $"{specialContagem}";
+    }
+
+    private void ExecutarSpecial()
+    {
+        Instantiate(Special, firePoint.position, firePoint.rotation);
     }
 
     public bool Grounded()
@@ -297,6 +328,14 @@ public class PlayerController : MonoBehaviour
         if (checkpointSaved)
         {
             transform.position = lastCheckpointPosition;
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if(col.gameObject.CompareTag("Plataforma"))
+        {
+            transform.parent = col.transform;
         }
     }
 }
