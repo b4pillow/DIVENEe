@@ -7,7 +7,6 @@ public class LifeSystemPlayer : MonoBehaviour
 {
     public int health;
     public int maxHealth = 20;
-
      public float KnockbackForce = 10f;
      public float invulnerabilityDuration = 1f;
     private bool isInvulnerable = false; 
@@ -17,6 +16,9 @@ public class LifeSystemPlayer : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
     public PlayerController player;
+
+
+
 
     // Start is called before the first frame update
     void Start()
