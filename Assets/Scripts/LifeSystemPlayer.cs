@@ -8,7 +8,7 @@ public class LifeSystemPlayer : MonoBehaviour
     public int health;
     public int maxHealth = 20;
      public float KnockbackForce = 10f;
-     public float invulnerabilityDuration = 1f;
+     public float invulnerabilityDuration = 0.2f;
     private bool isInvulnerable = false; 
     [SerializeField] private LifeUI barraDeVida;
     private Animator anim;

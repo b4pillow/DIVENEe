@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
 
     PlayerStateList pState;
 
-    private Rigidbody2D rb;
+    public Rigidbody2D rb { get; private set; }
     private float directionX, directionY;
     private float gravity;
     private Animator anim;
@@ -258,9 +258,9 @@ public class PlayerController : MonoBehaviour
     
     public IEnumerator KnockbackEffect(Vector2 direction)
     {
-        rb.velocity = direction * 10;
+        rb.velocity = direction * 20;
         knockbacking = true;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.2f);
         knockbacking = false;
         rb.velocity = Vector2.zero;
     }
@@ -345,11 +345,4 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D col)
-    {
-        if(col.gameObject.CompareTag("Plataforma"))
-        {
-            transform.parent = col.transform;
-        }
-    }
-}
+} 
