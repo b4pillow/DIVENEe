@@ -58,7 +58,7 @@ public class LifeSystemPlayer : MonoBehaviour
             StartCoroutine(player.KnockbackEffect(knockbackDirection));
             StartCoroutine(StartInvulnerability());
 
-            Damage(2);
+            Damage(1);
         }
     }
 

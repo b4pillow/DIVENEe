@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Espinhos : MonoBehaviour
 {
+	[SerializeField] private LifeSystemPlayer vidaPlayer;
+    [SerializeField] private LifeUI vidaCura;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +16,13 @@ public class Espinhos : MonoBehaviour
     void Update()
     {
         
+    }
+	void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.tag == "Player")
+        {
+            vidaPlayer.Damage(1);
+            vidaCura.ChangeBar(vidaPlayer.health, vidaPlayer.maxHealth);
+        }
     }
 }
