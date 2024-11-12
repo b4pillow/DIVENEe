@@ -12,6 +12,8 @@ public class Enemy : MonoBehaviour
     private bool isRecoiling = false;
     private Rigidbody2D rb;
 
+    public int Damage = 10;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>(); // Correção do nome do componente
