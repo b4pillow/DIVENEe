@@ -51,19 +51,35 @@ public class LifeSystemPlayer : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other )
     {
-        if (other.gameObject.CompareTag("Enemies")  && !isInvulnerable)
+        if (other.gameObject.CompareTag("Enemy")  && !isInvulnerable)
         {
                 
             Vector2 knockbackDirection = (transform.position - other.transform.position).normalized;
             StartCoroutine(player.KnockbackEffect(knockbackDirection));
             StartCoroutine(StartInvulnerability());
 
-            Damage(2 ); //aqui ficara a logica de dano de cada inimigo especifico
+            Damage(2); //aqui ficara a logica de dano de cada inimigo especifico
         }
-        if (other.gameObject.CompareTag("Thorn")  && !isInvulnerable)
+        if (other.gameObject.CompareTag("Espinho")  && !isInvulnerable)
         {
-            Damage(10);
+            Vector2 knockbackDirection = (transform.position - other.transform.position).normalized;
+            StartCoroutine(player.KnockbackEffect(knockbackDirection));
+            StartCoroutine(StartInvulnerability());
             Damage(1);
+        }
+        if (other.gameObject.CompareTag("Enemy2")  && !isInvulnerable)
+        {
+            Vector2 knockbackDirection = (transform.position - other.transform.position).normalized;
+            StartCoroutine(player.KnockbackEffect(knockbackDirection));
+            StartCoroutine(StartInvulnerability());
+            Damage(3);
+        }
+        if (other.gameObject.CompareTag("MiniBoss")  && !isInvulnerable)
+        {
+            Vector2 knockbackDirection = (transform.position - other.transform.position).normalized;
+            StartCoroutine(player.KnockbackEffect(knockbackDirection));
+            StartCoroutine(StartInvulnerability());
+            Damage(4);
         }
     }
 

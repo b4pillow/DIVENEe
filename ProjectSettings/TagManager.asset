@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - Plataforma
   - Espinho
+  - Enemy2
+  - MiniBoss
   layers:
   - Default
   - TransparentFX
