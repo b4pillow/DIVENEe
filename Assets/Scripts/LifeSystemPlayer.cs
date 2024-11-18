@@ -67,6 +67,20 @@ public class LifeSystemPlayer : MonoBehaviour
             StartCoroutine(StartInvulnerability());
             Damage(1);
         }
+		if (other.gameObject.CompareTag("Espinhos")  && !isInvulnerable)
+        {
+            Vector2 knockbackDirection = (transform.position - other.transform.position).normalized;
+            StartCoroutine(player.KnockbackEffect(knockbackDirection));
+            StartCoroutine(StartInvulnerability());
+            Damage(10);
+        }
+		if (other.gameObject.CompareTag("Serra")  && !isInvulnerable)
+        {
+            Vector2 knockbackDirection = (transform.position - other.transform.position).normalized;
+            StartCoroutine(player.KnockbackEffect(knockbackDirection));
+            StartCoroutine(StartInvulnerability());
+            Damage(2);
+        }
         if (other.gameObject.CompareTag("Enemy2")  && !isInvulnerable)
         {
             Vector2 knockbackDirection = (transform.position - other.transform.position).normalized;

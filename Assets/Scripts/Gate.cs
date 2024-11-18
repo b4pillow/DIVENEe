@@ -1,8 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Gate : MonoBehaviour
 {
     [SerializeField] private float health;
     [SerializeField] private float recoilLength;
@@ -11,24 +10,21 @@ public class Enemy : MonoBehaviour
     private float recoilTimer;
     private bool isRecoiling = false;
     private Rigidbody2D rb;
+    private Animator anim;
 
     public int Damage = 10;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>(); // Correção do nome do componente
-    }
-
-    void Start()
-    {
-        // Iniciar lógica do inimigo, se necessário
+        anim = GetComponent<Animator>();  // Garantir que o Animator seja atribuído
     }
 
     void Update()
     {
         if (health <= 0)
         {
-            Destroy(gameObject, 2f);
+            StartCoroutine(OpenGateAndDestroy()); // Chama a corrotina
         }
 
         if (isRecoiling)
@@ -42,12 +38,19 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void EnemyHit(float damageDone, Vector2 hitDirection, float hitForce) // Correção no tipo Vector2
+    public void EnemyHit(float damageDone, Vector2 hitDirection, float hitForce)
     {
         health -= damageDone;
         if (!isRecoiling)
         {
             rb.AddForce(-hitForce * recoilFactor * hitDirection);
         }
+    }
+
+    private IEnumerator OpenGateAndDestroy()
+    {
+        anim.SetTrigger("OpenGate"); // Aciona a animação de abertura do portão
+        yield return new WaitForSeconds(2f); // Espera 2 segundos para garantir a execução da animação
+        Destroy(gameObject); // Destroi o portão após a animação
     }
 }
