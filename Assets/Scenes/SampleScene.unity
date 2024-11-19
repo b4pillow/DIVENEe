@@ -6186,11 +6186,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 232357822166686374, guid: 2f579d9b03583c44b809508b5f1484c4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -255.4
+      value: -361.3
       objectReference: {fileID: 0}
     - target: {fileID: 232357822166686374, guid: 2f579d9b03583c44b809508b5f1484c4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 28.1
+      value: -0.2
       objectReference: {fileID: 0}
     - target: {fileID: 232357822166686374, guid: 2f579d9b03583c44b809508b5f1484c4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6231,7 +6231,7 @@ PrefabInstance:
     - target: {fileID: 1200470934055980809, guid: 2f579d9b03583c44b809508b5f1484c4, type: 3}
       propertyPath: Special
       value: 
-      objectReference: {fileID: 5227562318385999406, guid: d2d097566fd177149a6a89789802c7b7, type: 3}
+      objectReference: {fileID: 6195081875567297591, guid: e73500ab52bb1334290cdd174082b630, type: 3}
     - target: {fileID: 1200470934055980809, guid: 2f579d9b03583c44b809508b5f1484c4, type: 3}
       propertyPath: firePoint
       value: 
@@ -9198,7 +9198,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -255.4, y: 28.1, z: -10}
+  m_LocalPosition: {x: -361.3, y: -0.2, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -14098,6 +14098,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1855277702}
     m_Modifications:
+    - target: {fileID: 4468835011035354824, guid: 13ed524794812fc48be4f01ac4ab57ae, type: 3}
+      propertyPath: animationSpeed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4958212643474806063, guid: 13ed524794812fc48be4f01ac4ab57ae, type: 3}
       propertyPath: m_Name
       value: Gate (1)
@@ -26085,7 +26089,7 @@ Transform:
   m_GameObject: {fileID: 1439735735}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 182.83649, y: 32.58946, z: -9.728456}
+  m_LocalPosition: {x: 76.93649, y: 4.2894588, z: -9.728456}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -51851,6 +51855,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1855277702}
     m_Modifications:
+    - target: {fileID: 4468835011035354824, guid: 13ed524794812fc48be4f01ac4ab57ae, type: 3}
+      propertyPath: animationSpeed
+      value: 80
+      objectReference: {fileID: 0}
     - target: {fileID: 4958212643474806063, guid: 13ed524794812fc48be4f01ac4ab57ae, type: 3}
       propertyPath: m_Name
       value: Gate

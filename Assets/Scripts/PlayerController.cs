@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour
    [SerializeField] float attackingTime = 0.4f;
    private int specialContagem;
    public Transform firePoint;
-   public GameObject Special;
+   public PlayerBullet Special;
    public TMPro.TextMeshProUGUI texto;
   
    void Start()
@@ -250,6 +250,11 @@ public class PlayerController : MonoBehaviour
                objectsToHit[i].GetComponent<Enemy>().EnemyHit(damage, (transform.position - objectsToHit[i].transform.position).normalized, 100);
                SpecialCount();
            }
+
+           if (objectsToHit[i].TryGetComponent(out Gate gateComponent))
+           {
+               gateComponent.EnemyHit(damage);
+           }
        }
    }
 
@@ -301,7 +306,9 @@ public class PlayerController : MonoBehaviour
 
     private void ExecutarSpecial()
    {
-       Instantiate(Special, firePoint.position, firePoint.rotation);
+       PlayerBullet playerBullet = Instantiate(Special, firePoint.position, firePoint.rotation);
+       float direction = Mathf.Clamp(transform.localScale.x, -1, 1);
+       playerBullet.SetBullet(new(direction, 0, 0));
    }
 
    public bool Grounded()
