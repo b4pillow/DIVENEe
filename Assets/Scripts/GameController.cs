@@ -8,8 +8,11 @@ public class GameController : MonoBehaviour
     public GameObject Pause;
     private bool IsPaused;
     public GameObject GOobj;
-     public static GameController Instace;
-      public int totalScore;
+    public static GameController Instace;
+    public int totalScore;
+
+    public int ScoreText;
+
 
     public int Score;
 
