@@ -7,8 +7,18 @@ public class GameController : MonoBehaviour
 {
     public GameObject Pause;
     private bool IsPaused;
-
     public GameObject GOobj;
+     public static GameController Instace;
+      public int totalScore;
+
+    public int Score;
+
+    void Awake()
+    {
+        Instace = this;
+        
+    }
+
     void Start()
     {
         
@@ -18,6 +28,14 @@ public class GameController : MonoBehaviour
     void Update()
     {
         PauseGame();
+    }
+
+    public void UpdateScore( int value)
+    {
+        Score += value;
+        //ScoreText.text = Score.ToString();
+        
+        PlayerPrefs.SetInt("Score", Score + totalScore);
     }
 
     public void PauseGame()

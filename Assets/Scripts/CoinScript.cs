@@ -4,16 +4,22 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 public class CoinScript : MonoBehaviour
-{
-    public int CoinPoint = 0; 
-    private void OnTriggerEnter2D(Collider2D CP) 
+{ public int scoreValue;
+    //private AudioSource Sound;
+    
+    void Start()
     {
-        if (CP.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("moeda Coletada");
-            CoinPoint ++;
-            Destroy(CP.gameObject);
-        }
+        //Sound = GetComponent<AudioSource>();
+    }
 
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        
+        if (col.gameObject.tag == "Player")
+        {
+            //Sound.Play();
+            GameController.Instace.UpdateScore(scoreValue);
+            Destroy(gameObject, 0.1f);
+        }
     }
 }
