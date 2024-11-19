@@ -4,53 +4,44 @@ using UnityEngine;
 public class Gate : MonoBehaviour
 {
     [SerializeField] private float health;
-    [SerializeField] private float recoilLength;
-    [SerializeField] private float recoilFactor;
-
-    private float recoilTimer;
-    private bool isRecoiling = false;
-    private Rigidbody2D rb;
-    private Animator anim;
+    [SerializeField] private float animationSpeed = 10f;
+    private bool canHit;
 
     public int Damage = 10;
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>(); // Correção do nome do componente
-        anim = GetComponent<Animator>();  // Garantir que o Animator seja atribuído
+        canHit = true;
     }
 
     void Update()
     {
-        if (health <= 0)
+        if (canHit)
         {
-            StartCoroutine(OpenGateAndDestroy()); // Chama a corrotina
-        }
-
-        if (isRecoiling)
-        {
-            recoilTimer += Time.deltaTime;
-            if (recoilTimer > recoilLength)
+            if (health <= 0)
             {
-                isRecoiling = false;
-                recoilTimer = 0;
-            }
+                StartCoroutine(OpenGateAndDestroy(1)); // Chama a corrotina
+            }    
         }
     }
 
-    public void EnemyHit(float damageDone, Vector2 hitDirection, float hitForce)
+    public void EnemyHit(float damageDone)
     {
+        if (!canHit) return;
         health -= damageDone;
-        if (!isRecoiling)
-        {
-            rb.AddForce(-hitForce * recoilFactor * hitDirection);
-        }
     }
 
-    private IEnumerator OpenGateAndDestroy()
+    private IEnumerator OpenGateAndDestroy(float animationDuration)
     {
-        anim.SetTrigger("OpenGate"); // Aciona a animação de abertura do portão
-        yield return new WaitForSeconds(2f); // Espera 2 segundos para garantir a execução da animação
+        canHit = false;
+        while(animationDuration > 0)
+        {
+            animationDuration -= Time.deltaTime;
+            transform.position += (animationSpeed * Time.deltaTime * Vector3.up);
+            yield return null;
+        }
         Destroy(gameObject); // Destroi o portão após a animação
     }
+    
+    
 }
