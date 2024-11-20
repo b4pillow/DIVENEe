@@ -12,6 +12,7 @@ TagManager:
   - MiniBoss
   - Espinhos
   - Serra
+  - Wall
   layers:
   - Default
   - TransparentFX
