@@ -66,6 +66,11 @@ public class GameController : MonoBehaviour
 
     public void RestartScene()
     {
+        SceneManager.LoadScene(1);
+    }
+
+    public void RestartMenu()
+    {
         SceneManager.LoadScene(0);
     }
 }
