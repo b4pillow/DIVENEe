@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class PlayerController : MonoBehaviour
@@ -39,10 +41,7 @@ public class PlayerController : MonoBehaviour
    private bool canDash = true;
    private bool dashed = false;
 
-
    public Vector3 Position;
-
-
    private Vector3 lastCheckpointPosition;
    private bool checkpointSaved = false;
 
@@ -85,7 +84,11 @@ public class PlayerController : MonoBehaviour
    public Transform firePoint;
    public PlayerBullet Special;
    public TMPro.TextMeshProUGUI texto;
-  
+
+   public int totalScore; 
+   public Text CoinText;
+
+   
    void Start()
    {
        pState = GetComponent<PlayerStateList>();
@@ -126,6 +129,7 @@ public class PlayerController : MonoBehaviour
        {
            StartCoroutine(Attack());
        }
+       Respawn();
    }
 
 
@@ -393,6 +397,28 @@ public class PlayerController : MonoBehaviour
        }
    }
 
+   private void OnTriggerEnter2D(Collider2D col)
+   {
+    if (col.CompareTag("Coin"))
+       {
+        totalScore ++;
+        Update CoinText;
+       }
+   }
+
+   public void SpendCoins (int Amount)
+   {
+    if (totalScore >= Amount)
+    {
+        totalScore -= Amount;
+        Update CoinText;
+    }
+   }
+
+   private void UpdateCoinText()
+   {
+    CoinText.text = "Coin" + totalScore;
+   } 
 
 }
 

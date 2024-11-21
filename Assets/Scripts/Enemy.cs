@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
     
     public GameObject orbe;
     private float dropChance;
-
+     
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -27,7 +27,7 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-
+          
     }
 
     void Update()
@@ -62,4 +62,6 @@ public class Enemy : MonoBehaviour
             rb.AddForce(-hitForce * recoilFactor * hitDirection);
         }
     }
+
+    
 }
