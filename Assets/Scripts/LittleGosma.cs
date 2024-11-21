@@ -4,7 +4,7 @@ using UnityEngine;
 using Random = System.Random;
 using Unity.Mathematics;
 
-public class Enemy : MonoBehaviour
+public class LittleGosma : MonoBehaviour
 {
     [SerializeField] private float health;
     [SerializeField] private float recoilLength;
@@ -37,7 +37,6 @@ public class Enemy : MonoBehaviour
             float dropValue = UnityEngine.Random.Range(0, 1);
             if (dropValue <= dropChance)
             {
-                Instantiate(orbe, transform.position, quaternion.identity);
                 Instantiate(orbe, transform.position, quaternion.identity);
             }
             Destroy(gameObject);

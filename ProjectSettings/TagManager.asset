@@ -13,6 +13,7 @@ TagManager:
   - Espinhos
   - Serra
   - Wall
+  - BlocoDePedra
   layers:
   - Default
   - TransparentFX
