@@ -14,6 +14,7 @@ TagManager:
   - Serra
   - Wall
   - BlocoDePedra
+  - Lava
   layers:
   - Default
   - TransparentFX

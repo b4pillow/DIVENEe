@@ -26,8 +26,8 @@ public class LifeSystemPlayer : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         health = maxHealth;
         barraDeVida.ChangeBar(health, maxHealth);
-        anim = GetComponent<Animator>(); // Inicializa o Animator
-        spriteRenderer.GetComponent<SpriteRenderer>(); //Obs.
+        anim = GetComponent<Animator>();
+        spriteRenderer.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -46,7 +46,7 @@ public class LifeSystemPlayer : MonoBehaviour
             Destroy(gameObject, 0);
         }
         
-        anim.SetTrigger("TakeDamage"); // Usa o Animator diretamente
+        anim.SetTrigger("TakeDamage");
     }
 
     void OnCollisionEnter2D(Collision2D other )
@@ -72,7 +72,7 @@ public class LifeSystemPlayer : MonoBehaviour
             Vector2 knockbackDirection = (transform.position - other.transform.position).normalized;
             StartCoroutine(player.KnockbackEffect(knockbackDirection));
             StartCoroutine(StartInvulnerability());
-            Damage(10);
+            Damage(12);
         }
 		if (other.gameObject.CompareTag("Serra")  && !isInvulnerable)
         {
@@ -95,8 +95,14 @@ public class LifeSystemPlayer : MonoBehaviour
             StartCoroutine(StartInvulnerability());
             Damage(4);
         }
+        if (other.gameObject.CompareTag("Lava")  && !isInvulnerable)
+        {
+            Vector2 knockbackDirection = (transform.position - other.transform.position).normalized;
+            StartCoroutine(player.KnockbackEffect(knockbackDirection));
+            StartCoroutine(StartInvulnerability());
+            Damage(12);
+        }
     }
-
 
     private System.Collections.IEnumerator StartInvulnerability()
     {
