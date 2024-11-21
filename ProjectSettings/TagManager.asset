@@ -14,8 +14,6 @@ TagManager:
   - Serra
   - Wall
   - BlocoDePedra
-  - Obstacle
-  - Coin
   layers:
   - Default
   - TransparentFX

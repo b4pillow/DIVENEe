@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using TMPro;
 
 public class GameController : MonoBehaviour
 {
@@ -11,8 +9,11 @@ public class GameController : MonoBehaviour
     private bool IsPaused;
     public GameObject GOobj;
     public static GameController Instace;
-    public TextMeshProUGUI ScoreText;
     public int totalScore;
+
+    public int ScoreText;
+
+
     public int Score;
 
     void Awake()
@@ -23,7 +24,7 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-        totalScore = PlayerPrefs.GetInt("Score");
+        
     }
 
     
@@ -35,7 +36,7 @@ public class GameController : MonoBehaviour
     public void UpdateScore( int value)
     {
         Score += value;
-        ScoreText.text = Score.ToString();
+        //ScoreText.text = Score.ToString();
         
         PlayerPrefs.SetInt("Score", Score + totalScore);
     }
