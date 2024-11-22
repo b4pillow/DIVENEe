@@ -5,22 +5,24 @@ using UnityEngine;
 
 public class CheckPoint : MonoBehaviour
 {
+    public int ID;
+    public Transform player; 
     
    private void OnTriggerEnter2D(Collider2D col)
     {
         
         if (col.CompareTag("Player"))
         {
-    
-            col.gameObject.GetComponent<PlayerController>().SaveCheckpoint(transform.position);
-            gameObject.SetActive(false);
-            //Destroy(gameObject, 1f);
+            GameManager.Instance.savePointID = ID;
         }
     }
 
-    public void BandeiraSalva()
+    void Start()
     {
-        //logica
+        if (GameManager.Instance.savePointID == ID)
+        {
+            player.position = transform.position;   
+        }
     }
 }
 

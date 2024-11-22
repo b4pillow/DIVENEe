@@ -384,15 +384,5 @@ public class PlayerController : MonoBehaviour
        checkpointSaved = true;
    }
 
-
-   public void Respawn()
-   {
-       if (checkpointSaved)
-       {
-           transform.position = lastCheckpointPosition;
-       }
-   }
-
-
 }
 
